@@ -18,8 +18,8 @@ RUN apt-get update && \
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* &&\
   wget --quiet https://github.com/markokr/pghashlib/archive/master.zip -O pghashlib.zip &&\
-  unzip pghashlib.zip \
-  cd pghashlib-master \
+  unzip pghashlib.zip &&\
+  cd pghashlib-master &&\
   PG_CONFIG=/usr/lib/postgresql/$PG_MAJOR/bin/pg_config make &&\
   PG_CONFIG=/usr/lib/postgresql/$PG_MAJOR/bin/pg_config make install &&\
   ldconfig
