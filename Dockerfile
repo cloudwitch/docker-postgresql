@@ -2,10 +2,12 @@
 
 FROM postgres:12
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 MAINTAINER Fiona Buckner
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get -y install --no-upgrade \
+RUN apt-get update && \
+  apt-get -y install --no-upgrade \
   gcc \
   make \
   postgresql-$PG_MAJOR-plproxy \
@@ -13,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
   python-docutils \
   unzip \
   wget &&\
-  DEBIAN_FRONTEND=noninteractive apt-get clean &&\
+  apt-get clean &&\
   rm -rf /var/lib/apt/lists/* &&\
   wget --quiet https://github.com/markokr/pghashlib/archive/master.zip -O pghashlib.zip &&\
   unzip pghashlib.zip \
